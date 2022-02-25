@@ -107,13 +107,13 @@ public class GameRandomaiser : MonoBehaviour
         int i = 0;
         while (i < enemyCount)
         {
-            int X = Random.Range(-8, 9);
+            int X = Random.Range(-8, 9);//доступное поле
             int Y = Random.Range(-4, 5);
-            if ((X == playerCoordinatesX) && (playerCoordinatesY - 2 <= Y) && (playerCoordinatesY + 2 >= Y))
-                continue;
+            if ((X == playerCoordinatesX) && (playerCoordinatesY - 2 <= Y) && (playerCoordinatesY + 2 >= Y))//не рядом с с игроком
+                continue; 
             if ((Y == playerCoordinatesY) && (playerCoordinatesX - 2 <= X) && (playerCoordinatesX + 2 >= X))
                 continue;
-            if ((Y % 2 != 0) && (X % 2 != 0))
+            if ((Y % 2 != 0) && (X % 2 != 0))//не в статичную стену
                 continue;
             int a = Random.Range(1, 4);
             eneemyXCord[i] = X;
@@ -125,7 +125,7 @@ public class GameRandomaiser : MonoBehaviour
                     {
                         bool turn;
                         var randomaser = Random.value < 0.5f ? turn = true : turn = false;
-                        if (turn)
+                        if (turn)//вертикальный или горизонтальный патруль(только для красных)
                         {
                             enemy=Instantiate(enemyObj1, new Vector3(X, 0.75f, Y), Quaternion.identity);
 
@@ -161,14 +161,14 @@ public class GameRandomaiser : MonoBehaviour
         {
             int wallX = Random.Range(-8, 9);
             int wallY = Random.Range(-4, 5);
-            if ((wallX == playerCoordinatesX) && (playerCoordinatesY - 1 <= wallY) && (playerCoordinatesY + 1 >= wallY))
+            if ((wallX == playerCoordinatesX) && (playerCoordinatesY - 1 <= wallY) && (playerCoordinatesY + 1 >= wallY))//не рядом с игроком
                 continue;
             if ((wallY == playerCoordinatesY) && (playerCoordinatesX - 1 <= wallX) && (playerCoordinatesX + 1 >= wallX))
                 continue;
-            if ((wallY % 2 != 0) && (wallX % 2 != 0))
+            if ((wallY % 2 != 0) && (wallX % 2 != 0))//не в статичную стену
                 continue;
             bool onEnemy = false;
-            for (int i = 0; i < eneemyXCord.Length; i++)
+            for (int i = 0; i < eneemyXCord.Length; i++)//не на врагов
             {
                 if ((wallX == eneemyXCord[i]) && (wallY == eneemyYCord[i]))
                 {
