@@ -74,7 +74,7 @@ public class Player : MonoBehaviour
         if ((localBombCoolDown <= 0))
         {
             var bomb = ObjectPooler.Instance.GetObject(bombType);
-            bomb.GetComponent<Bomb>().OnCreate(new Vector3(Mathf.RoundToInt(transform.position.x), 0.5f, Mathf.RoundToInt(transform.position.z)), 3f, 2);
+            bomb.GetComponent<Bomb>().OnCreate(new Vector3(Mathf.RoundToInt(transform.position.x), 0.5f, Mathf.RoundToInt(transform.position.z)), bombTimer, bombRadius);
             localBombCoolDown = bombCoolDown;
         }
     }
